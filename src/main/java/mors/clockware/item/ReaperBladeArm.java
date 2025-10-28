@@ -3,6 +3,7 @@ package mors.clockware.item;
 import mors.clockware.registry.Clockware_Components;
 import mors.clockware.utils.Clockware_Util;
 import mors.clockware.utils.DualWieldClockware;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.UseAnim;
 
 public class ReaperBladeArm extends ClockwareItem implements DualWieldClockware {
     public ReaperBladeArm(ClockwareType clockwareType, int level, String clockwareName,  int installPrice) {
-        super(new Item.Properties().stacksTo(1)
+        super(new Properties().stacksTo(1)
                         .rarity(level==0? Rarity.COMMON: level==1? Rarity.UNCOMMON: Rarity.RARE)
                         .component(Clockware_Components.BLADE_OUT, false),
 
@@ -41,7 +42,7 @@ public class ReaperBladeArm extends ClockwareItem implements DualWieldClockware 
         return false;
     }
 
-    public static boolean toggleBlade(LivingEntity entity, SoundEvent pistonSound, ItemStack clockware, boolean value){
+    public static boolean toggleBlade(LivingEntity entity, Holder<SoundEvent> tridentSound, float soundPitch, ItemStack clockware, boolean value){
         var component = clockware.get(Clockware_Components.BLADE_OUT);
 
         if(component!=null){
@@ -55,10 +56,10 @@ public class ReaperBladeArm extends ClockwareItem implements DualWieldClockware 
                         0.3F + entity.level().getRandom().nextFloat() * 0.4F);
 
                 entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
-                        pistonSound,
+                        tridentSound,
                         SoundSource.PLAYERS,
                         0.2F,
-                        0.3F);
+                        soundPitch);
             }
 
             clockware.set(Clockware_Components.BLADE_OUT, value);

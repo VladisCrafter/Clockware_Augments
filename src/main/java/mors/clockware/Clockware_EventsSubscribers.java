@@ -314,14 +314,14 @@ public class Clockware_EventsSubscribers {
                 if(bladeOutMain!=null){
                     //Retracts
                     if(bladeOutMain){
-                        boolean mainRetracted= ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.PISTON_CONTRACT, clockwareOnMainArm, false);
+                        boolean mainRetracted= ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.TRIDENT_THROW, 0.8F, clockwareOnMainArm, false);
 
                         if(mainRetracted && event.onOffArm("reaper_blade")){
                             ItemStack clockwareOnOffArm= event.clockwareOnOffArm();
                             var bladeOutOff= clockwareOnOffArm.get(Clockware_Components.BLADE_OUT);
 
                             if(bladeOutOff!=null)
-                                ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.PISTON_CONTRACT, clockwareOnOffArm, false);
+                                ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.TRIDENT_THROW, 0.8F, clockwareOnOffArm, false);
                         }
                     }
                 }
@@ -501,26 +501,26 @@ public class Clockware_EventsSubscribers {
                     if(bladeOutMain!=null){
                         //Extends
                         if(!bladeOutMain){
-                           boolean mainExtended= ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.PISTON_EXTEND, clockwareOnMainArm, true);
+                           boolean mainExtended= ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.TRIDENT_THROW, 1.1F, clockwareOnMainArm, true);
 
                            if(mainExtended && event.onOffArm("reaper_blade") && event.getEntity().getOffhandItem().isEmpty()){
                                ItemStack clockwareOnOffArm= event.clockwareOnOffArm();
                                var bladeOutOff= clockwareOnOffArm.get(Clockware_Components.BLADE_OUT);
 
                                if(bladeOutOff!=null)
-                                   ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.PISTON_EXTEND, clockwareOnOffArm, true);
+                                   ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.TRIDENT_THROW, 1.1F, clockwareOnOffArm, true);
                            }
                         }
                         //Retracts
                         else {
-                            boolean mainRetracted= ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.PISTON_CONTRACT, clockwareOnMainArm, false);
+                            boolean mainRetracted= ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.TRIDENT_THROW, 0.8F, clockwareOnMainArm, false);
 
                             if(mainRetracted && event.onOffArm("reaper_blade")){
                                 ItemStack clockwareOnOffArm= event.clockwareOnOffArm();
                                 var bladeOutOff= clockwareOnOffArm.get(Clockware_Components.BLADE_OUT);
 
                                 if(bladeOutOff!=null)
-                                    ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.PISTON_CONTRACT, clockwareOnOffArm, false);
+                                    ReaperBladeArm.toggleBlade(event.getEntity(), SoundEvents.TRIDENT_THROW, 0.8F, clockwareOnOffArm, false);
                             }
                         }
                     }
@@ -575,6 +575,9 @@ public class Clockware_EventsSubscribers {
                             player.level().playSound(null, player.blockPosition(),
                                     SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS,
                                     1.0F, 0.8F + player.level().getRandom().nextFloat() * 0.4F);
+
+                            player.level().playSound(null, player.blockPosition(),
+                                    SoundEvents.BREEZE_LAND, SoundSource.PLAYERS, 0.8F, 1.8F);
 
                             //Add cooldowns
                             player.getCooldowns().addCooldown(event.getEntity().clockware$getClockwareOnMainHand().getItem(), cooldown);
